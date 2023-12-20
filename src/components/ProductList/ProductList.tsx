@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import { getProducts } from '../services/api';
-import ProductType from '../types/types';
-import Product from './Product';
+import { getProducts } from '../../services/api';
+import ProductType from '../../types/types';
+import Product from '../Product/Product';
 
 function ProductList() {
   const [products, setProducts] = useState<ProductType[]>();
