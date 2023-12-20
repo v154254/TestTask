@@ -1,8 +1,8 @@
-function Product() {
+function Product({ ...props }) {
   return (
     <div>
-      <img src="link to image" alt="product image" />
-      <p>Product name</p>
+      <img src={props.image} alt="product image" />
+      <p>{props.name}</p>
     </div>
   );
 }

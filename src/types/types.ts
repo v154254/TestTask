@@ -7,10 +7,10 @@ interface ProductColor {
   sizes: number[];
 }
 
-interface Product {
+interface ProductType {
   id: number;
   name: string;
   colors: ProductColor[];
 }
 
-export default Product;
+export default ProductType;
