@@ -8,9 +8,9 @@ interface ProductColor {
 }
 
 interface Product {
-  id: string;
+  id: number;
   name: string;
-  color: ProductColor[];
+  colors: ProductColor[];
 }
 
 export default Product;
