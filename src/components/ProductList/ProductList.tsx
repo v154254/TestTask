@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { getProducts } from '../../services/api';
 import ProductType from '../../types/types';
 import Product from '../Product/Product';
+import classes from './ProductList.module.css';
 
 function ProductList() {
   const [products, setProducts] = useState<ProductType[]>();
@@ -14,7 +15,7 @@ function ProductList() {
     }
   );
   return (
-    <div>
+    <div className={classes.container}>
       {products?.map((product) => (
         <Product
           key={product.id}
