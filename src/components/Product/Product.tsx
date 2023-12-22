@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 function Product({ ...props }) {
   return (
-    <div>
+    <Link to={`products/${props.id}`}>
       <img
         src={props.image}
         alt="product image"
@@ -9,7 +11,7 @@ function Product({ ...props }) {
         height="400px"
       />
       <p>{props.name}</p>
-    </div>
+    </Link>
   );
 }
 
