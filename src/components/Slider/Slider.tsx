@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import classes from './Slider.module.css';
 
 function Slider({ ...props }) {
   const images = props.images;
@@ -20,9 +21,15 @@ function Slider({ ...props }) {
     }
   }
   return (
-    <div>
+    <div className={classes.container}>
       <button onClick={previousImage}>Previous</button>
-      <img src={images[currentImage]} alt="product image" />
+      <img
+        decoding="sync"
+        width="300px"
+        height="400px"
+        src={images[currentImage]}
+        alt="product image"
+      />
       <button onClick={nextImage}>Next</button>
     </div>
   );
