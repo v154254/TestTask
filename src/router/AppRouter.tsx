@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 
 import App from '../App';
-import ProductPage from '../pages/ProductPage';
+import ProductPage from '../pages/ProductPage/ProductPage';
 import { getProduct } from '../services/api';
 
 const router = createBrowserRouter(

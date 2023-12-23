@@ -1,6 +1,6 @@
 import { useLoaderData } from 'react-router-dom';
-import ProductType from '../types/types';
-import Slider from '../components/Slider/Slider';
+import ProductType from '../../types/types';
+import Slider from '../../components/Slider/Slider';
 import classes from './ProductPage.module.css';
 
 function ProductPage() {
