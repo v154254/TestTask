@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import classes from './Slider.module.css';
 
 function Slider({ ...props }) {
   const images = props.images;
   const maxImages = images.length - 1;
   const [currentImage, setCurrentImage] = useState(0);
+  const [loaded, setLoaded] = useState(false);
 
   function previousImage() {
     if (currentImage === 0) {
@@ -12,6 +13,7 @@ function Slider({ ...props }) {
     } else {
       setCurrentImage(currentImage - 1);
     }
+    setLoaded(false);
   }
   function nextImage() {
     if (currentImage === maxImages) {
@@ -19,12 +21,21 @@ function Slider({ ...props }) {
     } else {
       setCurrentImage(currentImage + 1);
     }
+    setLoaded(false);
   }
+
+  useEffect(() => {
+    setLoaded(false);
+    setCurrentImage(0);
+  }, [props.images]);
+
   return (
     <div className={classes.container}>
       <button onClick={previousImage}>Previous</button>
+      {loaded ? null : <p>Идёт загрузка, подождите...</p>}
       <img
-        decoding="sync"
+        style={loaded ? {} : { display: 'none' }}
+        onLoad={() => setLoaded(true)}
         width="300px"
         height="400px"
         src={images[currentImage]}
