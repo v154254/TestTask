@@ -1,7 +1,7 @@
-interface Size {
+interface SizeType {
   id: number;
   label: string;
   number: number;
 }
 
-export default Size;
+export default SizeType;
