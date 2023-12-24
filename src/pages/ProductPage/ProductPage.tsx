@@ -22,7 +22,7 @@ function ProductPage() {
       </div>
       <div>
         <p>Выберите размер</p>
-        <SizeSelector />
+        <SizeSelector availableSizes={currentColor.sizes} />
       </div>
     </div>
   );

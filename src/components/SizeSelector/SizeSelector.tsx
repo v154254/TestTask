@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { getSizes } from '../../services/api';
 import SizeType from '../../types/SizeType';
 
-function SizeSelector() {
+function SizeSelector({ ...props }) {
   const [sizes, setSizes] = useState<SizeType[]>();
   getSizes().then(
     (results) => {
@@ -12,10 +12,15 @@ function SizeSelector() {
       console.error(error);
     }
   );
+  sizes?.map((size) => {
+    if (!props.availableSizes.includes(size.id)) {
+      size.notAvailable = true;
+    }
+  });
   return (
     <select>
       {sizes?.map((size) => (
-        <option key={size.id}>
+        <option key={size.id} disabled={size.notAvailable}>
           {size.number} RU / {size.label}
         </option>
       ))}

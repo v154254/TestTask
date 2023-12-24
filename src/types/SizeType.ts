@@ -2,7 +2,7 @@ interface SizeType {
   id: number;
   label: string;
   number: number;
-  available?: boolean;
+  notAvailable?: boolean;
 }
 
 export default SizeType;
