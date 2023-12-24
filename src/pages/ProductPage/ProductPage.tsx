@@ -12,13 +12,17 @@ function ProductPage() {
       <h1>{product.name}</h1>
       <Slider images={currentColor.images} />
       <div>
+        <p>Выберите цвет</p>
         {product.colors?.map((color) => (
           <button onClick={() => setCurrentColor(color)} key={color.id}>
             {color.name}
           </button>
         ))}
       </div>
-      <div>Sizes</div>
+      <div>
+        <p>Выберите размер</p>
+        Sizes
+      </div>
     </div>
   );
 }
