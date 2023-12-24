@@ -1,4 +1,5 @@
 import ProductType from '../types/ProductType';
+import SizeType from '../types/SizeType';
 
 const sizes = [
   { id: 1, label: 'XS', number: 44 },
@@ -90,7 +91,7 @@ const products = [
   },
 ];
 
-function getSizes() {
+function getSizes(): Promise<SizeType[]> {
   return new Promise((resolve) => {
     setTimeout(() => resolve(sizes), 250);
   });
