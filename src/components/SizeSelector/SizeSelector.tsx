@@ -15,10 +15,16 @@ function SizeSelector({ ...props }) {
   sizes?.map((size) => {
     if (!props.availableSizes.includes(size.id)) {
       size.notAvailable = true;
+    } else {
+      size.notAvailable = false;
     }
   });
+
   return (
-    <select>
+    <select defaultValue={'default'}>
+      <option value="default" disabled={true}>
+        Выберите размер
+      </option>
       {sizes?.map((size) => (
         <option key={size.id} disabled={size.notAvailable}>
           {size.number} RU / {size.label}
