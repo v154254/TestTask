@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getProducts } from '../../services/api';
-import ProductType from '../../types/types';
+import ProductType from '../../types/ProductType';
 import Product from '../Product/Product';
 import classes from './ProductList.module.css';
 

@@ -1,4 +1,4 @@
-import Product from '../types/types';
+import Product from '../types/ProductType';
 
 const sizes = [
   { id: 1, label: 'XS', number: 44 },
