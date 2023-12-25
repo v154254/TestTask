@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getSizes } from '../../services/api';
 import SizeType from '../../types/SizeType';
 import { useAppDispatch } from '../../hooks/redux';
@@ -6,9 +6,14 @@ import { SelectedProductSlice } from '../../store/reducers/SelectedProductSlice'
 
 function SizeSelector({ ...props }) {
   const [sizes, setSizes] = useState<SizeType[]>();
+  const [selectedValue, setSelectedValue] = useState('default');
 
   const { setSizeID } = SelectedProductSlice.actions;
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    setSelectedValue('default');
+  }, [props.availableSizes]);
 
   getSizes().then(
     (results) => {
@@ -29,7 +34,9 @@ function SizeSelector({ ...props }) {
   return (
     <select
       defaultValue={'default'}
+      value={selectedValue}
       onChange={(event) => {
+        setSelectedValue(event.target.value);
         dispatch(setSizeID(+event.target.value));
       }}
     >
