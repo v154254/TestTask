@@ -1,4 +1,4 @@
-interface ProductColor {
+export interface ProductColor {
   id: number;
   name: string;
   images: string[];

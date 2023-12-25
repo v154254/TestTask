@@ -1,4 +1,4 @@
-import ProductType from '../types/ProductType';
+import ProductType, { ProductColor } from '../types/ProductType';
 import SizeType from '../types/SizeType';
 
 const sizes = [
@@ -97,7 +97,7 @@ function getSizes(): Promise<SizeType[]> {
   });
 }
 
-function getSize(id: number) {
+function getSize(id: number): Promise<SizeType> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const size = sizes.find((size) => size.id == id);
@@ -116,7 +116,7 @@ function getProducts(): Promise<ProductType[]> {
   });
 }
 
-function getProduct(id: number) {
+function getProduct(id: number): Promise<ProductType> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const product = products.find((product) => product.id == id);
@@ -129,7 +129,10 @@ function getProduct(id: number) {
   });
 }
 
-function getProductColor(productID: number, colorID: number) {
+function getProductColor(
+  productID: number,
+  colorID: number
+): Promise<ProductColor> {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const product = products.find((product) => product.id == productID);
