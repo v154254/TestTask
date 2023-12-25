@@ -33,7 +33,6 @@ function SizeSelector({ ...props }) {
 
   return (
     <select
-      defaultValue={'default'}
       value={selectedValue}
       onChange={(event) => {
         setSelectedValue(event.target.value);
