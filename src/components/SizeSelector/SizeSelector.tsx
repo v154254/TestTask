@@ -32,22 +32,25 @@ function SizeSelector({ ...props }) {
   });
 
   return (
-    <select
-      value={selectedValue}
-      onChange={(event) => {
-        setSelectedValue(event.target.value);
-        dispatch(setSizeID(+event.target.value));
-      }}
-    >
-      <option value="default" disabled={true}>
-        Выберите размер
-      </option>
-      {sizes?.map((size) => (
-        <option value={size.id} key={size.id} disabled={size.notAvailable}>
-          {size.number} RU / {size.label}
+    <div>
+      <h2>Выберите размер</h2>
+      <select
+        value={selectedValue}
+        onChange={(event) => {
+          setSelectedValue(event.target.value);
+          dispatch(setSizeID(+event.target.value));
+        }}
+      >
+        <option value="default" disabled={true}>
+          Выберите размер
         </option>
-      ))}
-    </select>
+        {sizes?.map((size) => (
+          <option value={size.id} key={size.id} disabled={size.notAvailable}>
+            {size.number} RU / {size.label}
+          </option>
+        ))}
+      </select>
+    </div>
   );
 }
 

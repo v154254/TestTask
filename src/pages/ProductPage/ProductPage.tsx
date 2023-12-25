@@ -29,10 +29,7 @@ function ProductPage() {
           </button>
         ))}
       </div>
-      <div>
-        <p>Выберите размер</p>
-        <SizeSelector availableSizes={currentColor.sizes} />
-      </div>
+      <SizeSelector availableSizes={currentColor.sizes} />
     </div>
   );
 }
