@@ -13,7 +13,8 @@ function SizeSelector({ ...props }) {
 
   useEffect(() => {
     setSelectedValue('default');
-  }, [props.availableSizes]);
+    dispatch(setSizeID(0));
+  }, [props.availableSizes, dispatch, setSizeID]);
 
   getSizes().then(
     (results) => {

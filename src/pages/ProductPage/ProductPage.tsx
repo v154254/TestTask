@@ -7,15 +7,16 @@ import SizeSelector from '../../components/SizeSelector/SizeSelector';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { SelectedProductSlice } from '../../store/reducers/SelectedProductSlice';
 import ColorSelector from '../../components/ColorSelector/ColorSelector';
-import { getProductColor } from '../../services/api';
+import { getProductColor, getSize } from '../../services/api';
+import SizeType from '../../types/SizeType';
 
 function ProductPage() {
   const product = useLoaderData() as ProductType;
 
   const [firstRender, setFirstRender] = useState(true);
   const [colorInfo, setColorInfo] = useState<ProductColor>(product.colors[0]);
-
-  const { productID, colorID } = useAppSelector(
+  const [sizeInfo, setSizeInfo] = useState<SizeType>();
+  const { productID, colorID, sizeID } = useAppSelector(
     (state) => state.SelectedProductSlice
   );
   const { setProductID, setColorID } = SelectedProductSlice.actions;
@@ -40,7 +41,19 @@ function ProductPage() {
         console.error(error);
       }
     );
-  }, [productID, colorID]);
+    if (sizeID !== 0) {
+      getSize(sizeID).then(
+        (size) => {
+          setSizeInfo(size);
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    } else {
+      setSizeInfo(undefined);
+    }
+  }, [productID, colorID, sizeID]);
 
   return (
     <div className={classes.container}>
@@ -48,6 +61,11 @@ function ProductPage() {
       <Slider images={colorInfo?.images} />
       <ColorSelector availableColors={product.colors} />
       <SizeSelector availableSizes={colorInfo?.sizes} />
+      <h2>Выбранный продукт:</h2>
+      <p>
+        {product.name}, цвет {colorInfo.name}
+        {sizeInfo ? `, размер ${sizeInfo?.label}` : ''}
+      </p>
     </div>
   );
 }
