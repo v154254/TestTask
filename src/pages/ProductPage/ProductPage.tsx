@@ -9,6 +9,7 @@ import { SelectedProductSlice } from '../../store/reducers/SelectedProductSlice'
 import ColorSelector from '../../components/ColorSelector/ColorSelector';
 import { getProductColor, getSize } from '../../services/api';
 import SizeType from '../../types/SizeType';
+import { ShoppingCartSlice } from '../../store/reducers/ShoppingCartSlice';
 
 function ProductPage() {
   const product = useLoaderData() as ProductType;
@@ -20,6 +21,7 @@ function ProductPage() {
     (state) => state.SelectedProductSlice
   );
   const { setProductID, setColorID } = SelectedProductSlice.actions;
+  const { addProduct } = ShoppingCartSlice.actions;
   const dispatch = useAppDispatch();
 
   function setInitialValues() {
@@ -66,6 +68,13 @@ function ProductPage() {
         {product.name}, цвет {colorInfo.name}
         {sizeInfo ? `, размер ${sizeInfo?.label}` : ''}
       </p>
+      <button
+        onClick={() => {
+          dispatch(addProduct({ productID, colorID, sizeID }));
+        }}
+      >
+        Добавить выбранный товар в корзину
+      </button>
     </div>
   );
 }
