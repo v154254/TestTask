@@ -8,6 +8,7 @@ import {
 import App from '../App';
 import ProductPage from '../pages/ProductPage/ProductPage';
 import { getProduct } from '../services/api';
+import ShoppingCart from '../pages/ShoppingCart/ShoppingCart';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
           }
         }}
       />
+      <Route path="cart" element={<ShoppingCart />} />
     </>
   )
 );
