@@ -2,7 +2,7 @@ import ProductInCart from '../../components/ProductInCart/ProductInCart';
 import { useAppSelector } from '../../hooks/redux';
 
 function ShoppingCart() {
-  const productsInCart = useAppSelector((state) => state.ShoppingCartSlice);
+  const productsInCart = useAppSelector((state) => state.persistedReducer.cart);
   return (
     <div>
       {productsInCart?.map((product) => (
