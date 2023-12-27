@@ -1,5 +1,20 @@
+import ProductInCart from '../../components/ProductInCart/ProductInCart';
+import { useAppSelector } from '../../hooks/redux';
+
 function ShoppingCart() {
-  return <div></div>;
+  const productsInCart = useAppSelector((state) => state.ShoppingCartSlice);
+  return (
+    <div>
+      {productsInCart?.map((product) => (
+        <ProductInCart
+          key={`${product.productID}${product.colorID}${product.sizeID}`}
+          productID={product.productID}
+          colorID={product.colorID}
+          sizeID={product.sizeID}
+        />
+      ))}
+    </div>
+  );
 }
 
 export default ShoppingCart;
