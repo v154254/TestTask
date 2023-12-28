@@ -9,10 +9,11 @@ import App from '../App';
 import ProductPage from '../pages/ProductPage/ProductPage';
 import { getProduct } from '../services/api';
 import ShoppingCart from '../pages/ShoppingCart/ShoppingCart';
+import Layout from '../components/Layout/Layout';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <>
+    <Route element={<Layout />}>
       <Route path="/" element={<App />} />
       <Route
         path="products/:productID"
@@ -26,7 +27,7 @@ const router = createBrowserRouter(
         }}
       />
       <Route path="cart" element={<ShoppingCart />} />
-    </>
+    </Route>
   )
 );
 
