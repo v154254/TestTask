@@ -69,7 +69,7 @@ function ProductPage() {
         {sizeInfo ? `, размер ${sizeInfo?.label}` : ''}
       </p>
       <button
-        disabled={selectedProduct.sizeID === 0 ? true : false}
+        disabled={selectedProduct.sizeID === 0}
         onClick={() => {
           dispatch(addProduct(selectedProduct));
         }}
