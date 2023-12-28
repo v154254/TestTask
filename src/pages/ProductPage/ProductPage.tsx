@@ -10,6 +10,7 @@ import ColorSelector from '../../components/ColorSelector/ColorSelector';
 import { getProductColor, getSize } from '../../services/api';
 import SizeType from '../../types/SizeType';
 import { ShoppingCartSlice } from '../../store/reducers/ShoppingCartSlice';
+import searchProductInCart from '../../utils/searchProductInCart';
 
 function ProductPage() {
   const product = useLoaderData() as ProductType;
@@ -17,6 +18,7 @@ function ProductPage() {
   const [firstRender, setFirstRender] = useState(true);
   const [colorInfo, setColorInfo] = useState<ProductColor>(product.colors[0]);
   const [sizeInfo, setSizeInfo] = useState<SizeType>();
+  const [productAlreadyInCart, setProductAlreadyInCart] = useState(false);
 
   const { selectedProduct } = useAppSelector(
     (state) => state.SelectedProductSlice
@@ -57,6 +59,9 @@ function ProductPage() {
     } else {
       setSizeInfo(undefined);
     }
+    if (searchProductInCart(productsInCart, selectedProduct) !== -1) {
+      setProductAlreadyInCart(true);
+    } else setProductAlreadyInCart(false);
   }, [selectedProduct, productsInCart]);
 
   return (
@@ -71,7 +76,7 @@ function ProductPage() {
         {sizeInfo ? `, размер ${sizeInfo?.label}` : ''}
       </p>
       <button
-        disabled={selectedProduct.sizeID === 0}
+        disabled={selectedProduct.sizeID === 0 || productAlreadyInCart === true}
         onClick={() => {
           dispatch(addProduct(selectedProduct));
         }}
