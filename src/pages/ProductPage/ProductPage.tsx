@@ -17,7 +17,7 @@ function ProductPage() {
   const [firstRender, setFirstRender] = useState(true);
   const [colorInfo, setColorInfo] = useState<ProductColor>(product.colors[0]);
   const [sizeInfo, setSizeInfo] = useState<SizeType>();
-  const { productID, colorID, sizeID } = useAppSelector(
+  const { selectedProduct } = useAppSelector(
     (state) => state.SelectedProductSlice
   );
   const { setProductID, setColorID } = SelectedProductSlice.actions;
@@ -35,7 +35,7 @@ function ProductPage() {
   setInitialValues();
 
   useEffect(() => {
-    getProductColor(productID, colorID).then(
+    getProductColor(selectedProduct.productID, selectedProduct.colorID).then(
       (color) => {
         setColorInfo(color);
       },
@@ -43,8 +43,8 @@ function ProductPage() {
         console.error(error);
       }
     );
-    if (sizeID !== 0) {
-      getSize(sizeID).then(
+    if (selectedProduct.sizeID !== 0) {
+      getSize(selectedProduct.sizeID).then(
         (size) => {
           setSizeInfo(size);
         },
@@ -55,7 +55,7 @@ function ProductPage() {
     } else {
       setSizeInfo(undefined);
     }
-  }, [productID, colorID, sizeID]);
+  }, [selectedProduct]);
 
   return (
     <div className={classes.container}>
@@ -69,9 +69,9 @@ function ProductPage() {
         {sizeInfo ? `, размер ${sizeInfo?.label}` : ''}
       </p>
       <button
-        disabled={sizeID === 0 ? true : false}
+        disabled={selectedProduct.sizeID === 0 ? true : false}
         onClick={() => {
-          dispatch(addProduct({ productID, colorID, sizeID }));
+          dispatch(addProduct(selectedProduct));
         }}
       >
         Добавить выбранный товар в корзину

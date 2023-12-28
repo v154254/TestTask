@@ -1,23 +1,23 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
-  productID: 0,
-  colorID: 0,
-  sizeID: 0,
-};
-
 export const SelectedProductSlice = createSlice({
   name: 'selectedProduct',
-  initialState,
+  initialState: {
+    selectedProduct: {
+      productID: 0,
+      colorID: 0,
+      sizeID: 0,
+    },
+  },
   reducers: {
     setProductID(state, action: PayloadAction<number>) {
-      state.productID = action.payload;
+      state.selectedProduct.productID = action.payload;
     },
     setColorID(state, action: PayloadAction<number>) {
-      state.colorID = action.payload;
+      state.selectedProduct.colorID = action.payload;
     },
     setSizeID(state, action: PayloadAction<number>) {
-      state.sizeID = action.payload;
+      state.selectedProduct.sizeID = action.payload;
     },
   },
 });
