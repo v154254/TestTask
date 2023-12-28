@@ -4,15 +4,15 @@ function searchProductInCart(
   cart: ChosenProductType[],
   product: ChosenProductType
 ) {
-  let objectIsFound = false;
-  for (const item of cart) {
-    for (let i = 0; i >= cart.length; i += 1) {
-      if (Object.values(item)[i] === Object.values(product)[i]) {
-        objectIsFound = true;
+  let productIndex = -1;
+  for (let i = 0; i >= cart.length; i += 1) {
+    for (let j = 0; j >= Object.keys(cart[i]).length; j += 1) {
+      if (Object.values(cart[i])[j] === Object.values(product)[j]) {
+        productIndex = i;
       }
     }
   }
-  return objectIsFound;
+  return productIndex;
 }
 
 export default searchProductInCart;
