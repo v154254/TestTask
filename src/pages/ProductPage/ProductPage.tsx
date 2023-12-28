@@ -17,9 +17,11 @@ function ProductPage() {
   const [firstRender, setFirstRender] = useState(true);
   const [colorInfo, setColorInfo] = useState<ProductColor>(product.colors[0]);
   const [sizeInfo, setSizeInfo] = useState<SizeType>();
+
   const { selectedProduct } = useAppSelector(
     (state) => state.SelectedProductSlice
   );
+  const productsInCart = useAppSelector((state) => state.persistedReducer.cart);
   const { setProductID, setColorID } = SelectedProductSlice.actions;
   const { addProduct } = ShoppingCartSlice.actions;
   const dispatch = useAppDispatch();
@@ -55,7 +57,7 @@ function ProductPage() {
     } else {
       setSizeInfo(undefined);
     }
-  }, [selectedProduct]);
+  }, [selectedProduct, productsInCart]);
 
   return (
     <div className={classes.container}>
