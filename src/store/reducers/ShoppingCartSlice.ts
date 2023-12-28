@@ -10,6 +10,9 @@ export const ShoppingCartSlice = createSlice({
     addProduct(state, action: PayloadAction<ChosenProductType>) {
       state.cart.push(action.payload);
     },
+    removeProduct(state, action: PayloadAction<number>) {
+      state.cart.splice(action.payload, 1);
+    },
   },
 });
 
