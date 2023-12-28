@@ -1,4 +1,4 @@
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import ProductType, { ProductColor } from '../../types/ProductType';
 import Slider from '../../components/Slider/Slider';
 import classes from './ProductPage.module.css';
@@ -68,6 +68,7 @@ function ProductPage() {
     <div className={classes.container}>
       <h1>{product.name}</h1>
       <Slider images={colorInfo?.images} />
+      <Link to={'/'}>Назад к списку продуктов</Link>
       <ColorSelector availableColors={product.colors} />
       <SizeSelector availableSizes={colorInfo?.sizes} />
       <h2>Выбранный продукт:</h2>
